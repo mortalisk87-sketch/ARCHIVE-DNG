@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DNG_ARCHIVES.exe</title>
+<style>
+:root{--bg1:#3a6ea5;--bg2:#5a8f3c;--face:#ece9d8;--ink:#000;--title1:#0a246a;--title2:#3a6ea5;--shadow:#808080;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#1d3a5e;--bg2:#2f4d20}}
+:root[data-theme="dark"]{--bg1:#1d3a5e;--bg2:#2f4d20}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:Tahoma,"Segoe UI",Verdana,sans-serif;font-size:13px;color:var(--ink);background:url(bliss.jpg) center/cover no-repeat #3a6ea5;overflow:hidden}
+#desk{position:fixed;inset:0 0 30px 0;overflow:hidden}
+.win{position:absolute;left:0;top:0;width:900px;height:600px;min-width:280px;min-height:200px;max-width:100%;max-height:100%;resize:both;overflow:hidden;background:var(--face);border:2px solid #0831d9;border-radius:8px 8px 0 0;box-shadow:3px 3px 12px rgba(0,0,0,.5);display:flex;flex-direction:column}
+.tb{cursor:default;touch-action:none;user-select:none;background:linear-gradient(180deg,#0997ff 0%,#0053ee 8%,#0050ee 40%,#06f 88%,#0042d6 100%);color:#fff;font-weight:bold;padding:4px 4px 4px 8px;display:flex;align-items:center;gap:6px;border-radius:6px 6px 0 0;text-shadow:1px 1px #0a246a}
+.tb span.t{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn{width:22px;height:22px;border:1px solid #fff;border-radius:3px;background:linear-gradient(135deg,#4d8cff,#1c4fd6);color:#fff;font:bold 12px Tahoma;line-height:18px;text-align:center;padding:0}
+.btn.x{background:linear-gradient(135deg,#e9805d,#c0301a)}
+.menu{display:flex;gap:14px;padding:3px 8px;border-bottom:1px solid #aca899;background:var(--face)}
+.addr{display:flex;gap:6px;align-items:center;padding:4px 8px;border-bottom:1px solid #aca899}
+.addr .box{flex:1;min-width:0;background:#fff;color:#000;border:1px solid #7f9db9;padding:2px 6px;font:12px Tahoma,sans-serif}
+#main{flex:1;min-height:0;overflow:auto;background:#fff;border:2px inset #fff;margin:4px;padding:12px;color:#000}
+h1{font-size:18px;margin:0 0 4px;color:#0a246a}
+.sub{color:#555;margin:0 0 12px}
+.vid{border:1px solid #aca899;background:#f7f6ee;margin-bottom:14px}
+.vid h2{font-size:13px;margin:0;padding:4px 8px;background:linear-gradient(180deg,#fff,#d6d3c0);border-bottom:1px solid #aca899;display:flex;justify-content:space-between;gap:8px}
+.vid .d{font-weight:normal;color:#444;font-size:12px;white-space:nowrap}
+.vid .b{padding:8px}
+video,iframe{width:100%;max-height:360px;aspect-ratio:16/9;background:#000;border:0;display:block;filter:contrast(1.1) saturate(.8)}
+.vid p{margin:8px 0 0;white-space:pre-wrap}
+.empty{padding:30px;text-align:center;color:#555}
+.xp-in,.xp-btn,textarea{font:12px Tahoma,sans-serif}
+.xp-in,textarea{width:100%;padding:3px 5px;border:1px solid #7f9db9;background:#fff;color:#000;margin-bottom:6px}
+.xp-btn{padding:3px 14px;border:1px solid #003c74;border-radius:3px;background:linear-gradient(180deg,#fff,#ece9d8 85%,#d6d0c0);color:#000;cursor:pointer}
+.xp-btn:disabled{opacity:.5}
+.xp-btn:focus-visible,.btn:focus-visible,.tiny:focus-visible,.xp-in:focus-visible{outline:2px dotted #000;outline-offset:1px}
+.panel{border:1px solid #aca899;background:var(--face);padding:10px;margin-bottom:14px}
+.panel legend{font-weight:bold;color:#0a246a}
+.foot{display:flex;justify-content:flex-end;padding:2px 10px 5px}
+.tiny{font:9px Tahoma;color:#8b8878;background:none;border:0;cursor:pointer;padding:2px;text-decoration:underline}
+#icon{position:fixed;left:14px;top:calc(14px + env(safe-area-inset-top,0px));z-index:1;width:84px;background:none;border:1px solid transparent;color:#fff;text-shadow:1px 1px 2px #000;font:12px Tahoma;text-align:center;cursor:pointer;padding:4px}
+#icon span{display:block;font-size:36px;line-height:1.1}
+#icon:hover,#icon:focus-visible{background:rgba(49,106,197,.5);border:1px dotted #fff;outline:none}
+#task{position:fixed;left:0;right:0;bottom:0;height:30px;padding-bottom:env(safe-area-inset-bottom,0px);height:calc(30px + env(safe-area-inset-bottom,0px));background:linear-gradient(180deg,#3168d5,#245edb 10%,#245edb 90%,#1941a5);display:flex;align-items:center;gap:6px}
+#start{height:100%;padding:0 22px 0 10px;border:0;border-radius:0 12px 12px 0;background:linear-gradient(180deg,#5cb85c,#3c9a3c 50%,#2d7d2d);color:#fff;font:italic bold 15px Tahoma;text-shadow:1px 1px #1a4a1a}
+.tk{font:12px Tahoma;text-align:left;cursor:pointer;flex:1;height:22px;background:#1e52b7;border:1px solid #14398a;border-radius:3px;color:#fff;padding:2px 8px;max-width:220px;overflow:hidden;white-space:nowrap}
+#clock{margin-left:auto;background:#0f8cea;color:#fff;height:100%;display:flex;align-items:center;padding:0 12px;border-left:1px solid #0a3a8a}
+#user{color:#fff;font-size:11px}
+/* Glitch */
+.glitch #desk{animation:g 0.12s steps(2) infinite}
+.glitch .win{filter:hue-rotate(90deg) contrast(1.8);animation:gs .2s steps(3) infinite}
+@keyframes g{0%{transform:translate(0,0)}25%{transform:translate(-6px,3px) skewX(4deg)}50%{transform:translate(8px,-4px)}75%{transform:translate(-3px,6px) skewX(-6deg)}100%{transform:translate(4px,0)}}
+@keyframes gs{0%{clip-path:inset(0 0 60% 0)}33%{clip-path:inset(30% 0 10% 0)}66%{clip-path:inset(0 0 0 0);transform:scaleX(1.04)}100%{clip-path:inset(50% 0 0 0)}}
+#noise{position:fixed;inset:0;pointer-events:none;opacity:0;z-index:50;background:repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 2px,rgba(0,0,0,.35) 2px 4px)}
+.glitch #noise{opacity:1;animation:g .1s steps(2) infinite}
+#crash{position:fixed;inset:0;z-index:99;background:#fff;color:#5f6368;font:15px/1.6 system-ui,"Segoe UI",Roboto,sans-serif;display:none;align-items:flex-start;justify-content:flex-start;padding:max(10vh,40px) 8vw;overflow:auto}
+#crash h1{font:400 24px/1.3 system-ui,"Segoe UI",Roboto,sans-serif;color:#202124;margin:20px 0 12px}
+#crash .cb{max-width:600px}
+#crash small{display:block;margin:14px 0 24px;font-size:12px}
+.cbtn{background:#1a73e8;color:#fff;border:0;border-radius:4px;padding:9px 20px;font:500 14px system-ui,sans-serif;cursor:pointer}
+.cbtn:focus-visible{outline:2px solid #1a73e8;outline-offset:2px}
+@media (prefers-color-scheme:dark){#crash{background:#202124;color:#9aa0a6}#crash h1{color:#e8eaed}.cbtn{background:#8ab4f8;color:#202124}}
+#crash.on{display:flex}
+.err{width:min(440px,100%);background:var(--face);border:2px solid #0831d9;border-radius:8px 8px 0 0;box-shadow:0 0 0 2px #000}
+.err .body{padding:16px;display:flex;gap:12px;align-items:flex-start;color:#000}
+.err .ic{font-size:30px;color:#c00}
+.err .row{display:flex;justify-content:flex-end;padding:0 14px 14px}
+#cursor{position:fixed;inset:0;z-index:98;display:none;background:#000}
+@media (prefers-reduced-motion:reduce){.glitch #desk,.glitch .win,.glitch #noise{animation:none}}
+@media (max-width:560px){.menu{display:none}#user{display:none}}
+</style>
+</head>
+<body>
+<div id="desk">
+ <div class="win" role="main">
+  <div class="tb"><span aria-hidden="true">📼</span><span class="t">DNG_ARCHIVES - Explorer</span><button class="btn" id="bmin" aria-label="Minimize">_</button><button class="btn" id="bmax" aria-label="Maximize">▢</button><button class="btn x" id="bclose" aria-label="Close">✕</button></div>
+  <div class="menu"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Help</span></div>
+  <div class="addr"><span>Address</span><input class="box" id="addr" value="C:\DELIVERY_NOT_GUARANTEED\TAPES" aria-label="Address" spellcheck="false" autocomplete="off" autocapitalize="off"><button class="xp-btn" id="go">OK</button></div>
+  <div id="main">
+   <h1>Delivery Not Guaranteed - Recovered tapes</h1>
+   <p class="sub">Analog footage found on the server. Do not watch alone.</p>
+   <div id="writer" hidden></div>
+   <div id="list"><div class="empty">Loading tapes...</div></div>
+  </div>
+  <div class="foot"><button class="tiny" id="open-login">Are you the cursed writer?</button></div>
+ </div>
+</div>
+<button id="icon" aria-label="Open DNG_ARCHIVES"><span>📼</span>DNG_ARCHIVES</button>
+<div id="task"><button id="start">start</button><button class="tk" id="tk">📼 DNG_ARCHIVES</button><span id="user"></span><div id="clock">--:--</div></div>
+<div id="noise"></div>
+
+<div id="login" style="position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;padding:16px">
+ <div class="err" role="dialog" aria-modal="true" aria-labelledby="lt">
+  <div class="tb"><span class="t" id="lt">Log On</span><button class="btn x" id="lclose" aria-label="Close">✕</button></div>
+  <div class="body" style="display:block">
+   <label for="pw">Enter the writer's password:</label><br><br>
+   <input id="pw" class="xp-in" type="password" autocomplete="off">
+   <div id="lerr" style="color:#c00;min-height:16px"></div>
+  </div>
+  <div class="row"><button class="xp-btn" id="lok">OK</button>&nbsp;<button class="xp-btn" id="lcancel">Cancel</button></div>
+ </div>
+</div>
+
+<div id="crash" role="alert">
+ <div class="cb">
+  <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true"><rect x="10" y="6" width="52" height="60" rx="8" fill="none" stroke="currentColor" stroke-width="4"/><path d="M22 24l8 8m0-8l-8 8M42 24l8 8m0-8l-8 8" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M24 52q12-12 24 0" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+  <h1>Aw, Snap!</h1>
+  <p>Something went wrong while displaying this webpage. To continue, reload or go to another page.</p>
+  <small>Error code: STATUS_ACCESS_VIOLATION</small>
+  <button class="cbtn" id="restart">Reload</button>
+ </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ===== CONFIG : colle ici tes infos Supabase (voir README.md). Laisse vide = mode local ===== */
+var CFG={SUPABASE_URL:"",SUPABASE_ANON_KEY:""};
+/* SHA-256 du mot de passe (utilisé seulement en mode local) */
+var PW_HASH="a2aead39bccb09645350d1f7b4a932a6adcf072bf97f73d192f4821e14e6e35b";
+var LIMIT=3600;
+var $=function(i){return document.getElementById(i)};
+var remote=!!(CFG.SUPABASE_URL&&CFG.SUPABASE_ANON_KEY),videos=[],pw=null,isWriter=false;
+function esc(s){var d=document.createElement("div");d.textContent=s==null?"":String(s);return d.innerHTML}
+function fmt(iso){try{return new Date(iso).toLocaleString("en-US",{dateStyle:"long",timeStyle:"short"})}catch(e){return iso}}
+setInterval(function(){$("clock").textContent=new Date().toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"})},1000);
+
+/* ---- 1h cumulée -> glitch -> crash ---- */
+var KEY="dng_time",spent=0,crashed=false;
+try{spent=parseInt(localStorage.getItem(KEY)||"0",10)||0}catch(e){}
+function crash(delay){
+  if(crashed)return;crashed=true;
+  document.body.classList.add("glitch");
+  setTimeout(function(){document.body.classList.remove("glitch");$("crash").classList.add("on");document.title="Aw, Snap!";$("restart").focus()},typeof delay==="number"?delay:3500);
+}
+setInterval(function(){
+  if(crashed||document.hidden)return;
+  spent++;
+  try{localStorage.setItem(KEY,String(spent))}catch(e){}
+  if(spent>=LIMIT)crash();
+},1000);
+if(location.hash==="#glitch")setTimeout(crash,1500);
+$("restart").onclick=function(){try{localStorage.setItem(KEY,"0")}catch(e){}location.hash="";location.reload()};
+if(spent>=LIMIT)setTimeout(crash,500);
+
+/* ---- Données ---- */
+function api(path,opts){
+  opts=opts||{};
+  opts.headers=Object.assign({apikey:CFG.SUPABASE_ANON_KEY,Authorization:"Bearer "+CFG.SUPABASE_ANON_KEY,"Content-Type":"application/json"},opts.headers||{});
+  return fetch(CFG.SUPABASE_URL+"/rest/v1/"+path,opts).then(function(r){
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    return r.text().then(function(t){return t?JSON.parse(t):null});
+  });
+}
+function rpc(n,b){return api("rpc/"+n,{method:"POST",body:JSON.stringify(b)})}
+function saveLocal(){try{localStorage.setItem("dng_videos",JSON.stringify(videos))}catch(e){}}
+async function load(){
+  try{
+    if(remote){
+      var rows=await api("videos?select=*&order=created_at.desc");
+      videos=rows.map(function(r){return{id:String(r.id),title:r.title,desc:r.descr,url:r.url,date:r.created_at}});
+    }else{videos=JSON.parse(localStorage.getItem("dng_videos")||"[]")}
+  }catch(e){$("list").innerHTML='<div class="empty">Unable to read the archives.</div>';return}
+  render();
+}
+function render(){
+  var el=$("list");
+  if(!videos.length){el.innerHTML='<div class="empty">No tapes yet.</div>';return}
+  el.innerHTML="";
+  videos.forEach(function(v){
+    var url=v.url||"",media="",yt=url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
+    if(yt)media='<iframe src="https://www.youtube-nocookie.com/embed/'+yt[1]+'" allowfullscreen title="'+esc(v.title)+'"></iframe>';
+    else if(/^https:\/\//.test(url)||/^[\w.\/-]+$/.test(url))media='<video controls preload="metadata" src="'+esc(url)+'"></video>';
+    var w=document.createElement("div");w.className="vid";
+    w.innerHTML='<h2><span>'+esc(v.title)+'</span><span class="d">'+esc(fmt(v.date))+'</span></h2><div class="b">'+media+(v.desc?'<p>'+esc(v.desc)+'</p>':'')+(isWriter?'<button class="xp-btn" style="margin-top:8px" data-del="'+esc(v.id)+'">Delete</button>':'')+'</div>';
+    el.appendChild(w);
+  });
+  el.querySelectorAll("[data-del]").forEach(function(b){
+    b.onclick=async function(){
+      if(!confirm("Delete this tape?"))return;
+      try{
+        var id=b.getAttribute("data-del");
+        if(remote)await rpc("delete_video",{pw:pw,vid:Number(id)});
+        else{videos=videos.filter(function(x){return x.id!==id});saveLocal()}
+        await load();
+      }catch(e){alert("Delete refused.")}
+    };
+  });
+}
+load();
+
+/* ---- Connexion écrivain ---- */
+function showLogin(on){$("login").style.display=on?"flex":"none";if(on){$("pw").value="";$("lerr").textContent="";$("pw").focus()}}
+$("open-login").onclick=function(){showLogin(true)};
+$("lclose").onclick=$("lcancel").onclick=function(){showLogin(false)};
+async function sha(s){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("")}
+async function tryLogin(){
+  var v=$("pw").value,ok=false;
+  try{ok=remote?(await rpc("check_pw",{pw:v}))===true:(await sha(v))===PW_HASH}catch(e){ok=false}
+  if(ok){pw=v;isWriter=true;showLogin(false);$("user").textContent="Session: The Cursed Writer";$("open-login").hidden=true;writerUI();render()}
+  else{$("lerr").textContent="Incorrect password.";$("pw").select()}
+}
+$("lok").onclick=tryLogin;
+$("pw").onkeydown=function(e){if(e.key==="Enter")tryLogin();if(e.key==="Escape")showLogin(false)};
+
+/* ---- Panneau de publication ---- */
+function writerUI(){
+  var w=$("writer");w.hidden=false;
+  w.innerHTML='<fieldset class="panel"><legend>Publish a tape</legend>'+
+  (remote?'':'<p class="sub">Local mode: Supabase is not configured, tapes are saved only in this browser.</p>')+
+  '<label for="vt">Title</label><input id="vt" class="xp-in" maxlength="120">'+
+  '<label for="vd">Description</label><textarea id="vd" rows="2" maxlength="600"></textarea>'+
+  '<label for="vu">Video link (YouTube or https://...mp4)</label><input id="vu" class="xp-in" placeholder="https://">'+
+  '<button class="xp-btn" id="vpub">Publish</button> <span id="vst"></span></fieldset>';
+  $("vpub").onclick=async function(){
+    var st=$("vst"),t=$("vt").value.trim(),u=$("vu").value.trim(),d=$("vd").value.trim();
+    if(!t||!u){st.textContent="Title and link required.";return}
+    if(!/^https:\/\//.test(u)){st.textContent="The link must start with https://";return}
+    $("vpub").disabled=true;st.textContent="Publishing...";
+    try{
+      if(remote)await rpc("publish_video",{pw:pw,t:t,d:d,u:u});
+      else{videos.unshift({id:"v"+Date.now(),title:t,desc:d,url:u,date:new Date().toISOString()});saveLocal()}
+      $("vt").value="";$("vd").value="";$("vu").value="";st.textContent="Published.";
+      await load();
+    }catch(e){st.textContent="Error: publish refused"}
+    $("vpub").disabled=false;
+  };
+}
+
+/* ---- Fenêtre interactive ---- */
+var win=document.querySelector(".win"),tb=win.querySelector(".tb"),desk=$("desk"),tkb=$("tk"),maxed=false,prev=null;
+function place(){var dw=desk.clientWidth,dh=desk.clientHeight,w=Math.min(900,dw),h=Math.min(600,dh);win.style.width=w+"px";win.style.height=h+"px";win.style.left=Math.max(0,(dw-w)/2)+"px";win.style.top=Math.max(0,(dh-h)/2)+"px"}
+place();
+function setMax(on){
+  if(on){prev={l:win.style.left,t:win.style.top,w:win.style.width,h:win.style.height};win.style.left="0px";win.style.top="0px";win.style.width="100%";win.style.height="100%";win.style.resize="none";win.style.borderRadius="0"}
+  else if(prev){win.style.left=prev.l;win.style.top=prev.t;win.style.width=prev.w;win.style.height=prev.h;win.style.resize="";win.style.borderRadius=""}
+  maxed=on;$("bmax").textContent=on?"\u2750":"\u25a2";
+}
+tb.addEventListener("pointerdown",function(e){
+  if(e.target.closest(".btn")||maxed)return;
+  var sx=e.clientX,sy=e.clientY,ol=win.offsetLeft,ot=win.offsetTop;
+  tb.setPointerCapture(e.pointerId);
+  function mv(ev){var l=ol+ev.clientX-sx,t=ot+ev.clientY-sy;l=Math.min(Math.max(l,80-win.offsetWidth),desk.clientWidth-80);t=Math.min(Math.max(t,0),desk.clientHeight-30);win.style.left=l+"px";win.style.top=t+"px"}
+  function up(){tb.removeEventListener("pointermove",mv);tb.removeEventListener("pointerup",up)}
+  tb.addEventListener("pointermove",mv);tb.addEventListener("pointerup",up);
+});
+tb.addEventListener("dblclick",function(e){if(!e.target.closest(".btn"))setMax(!maxed)});
+function hideWin(){win.style.display="none";tkb.style.opacity=".6"}
+function showWin(){win.style.display="";tkb.style.opacity="1"}
+$("bmin").onclick=hideWin;
+$("bmax").onclick=function(){setMax(!maxed)};
+$("bclose").onclick=function(){hideWin();tkb.style.display="none"};
+tkb.onclick=function(){win.style.display==="none"?showWin():hideWin()};
+$("icon").onclick=function(){tkb.style.display="";showWin()};
+
+/* ---- Chemin secret ---- */
+var addr=$("addr"),HOME="C:\\DELIVERY_NOT_GUARANTEED\\TAPES";
+function goPath(){
+  var p=addr.value.trim().replace(/\//g,"\\").replace(/\\+$/,"").toUpperCase();
+  if(p==="C:\\DELIVERY_NOT_GUARANTEED\\PELTSDEN"){
+    var m=$("main");m.style.padding="0";
+    m.innerHTML='<img src="peltsden.jpg" alt="Peltsden" style="width:100%;display:block">';
+    addr.blur();crash(6000);
+  }else if(p!==HOME){
+    addr.style.borderColor="#c00";
+    setTimeout(function(){addr.style.borderColor="";addr.value=HOME},900);
+  }
+}
+addr.onkeydown=function(e){if(e.key==="Enter")goPath()};
+$("go").onclick=goPath;
+})();
+</script>
+</body>
+</html>
